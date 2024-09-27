@@ -102,6 +102,29 @@ UpdateFastList()
 
 Exit.lua — файл, который выполняется перед выходом в главное меню. Он может быть пустым, но вы можете использовать его, например, для сохранения текущего проигрываемого времени музыки, чтобы воспроизвести её с того же момента.
 
+# Пример карьеры `Heaven's legacy`
+
+Main.lua
+```lua
+LoadMap('Base Lobby')
+
+SetMoneySymbol('✪')
+
+Read('Aircraft Specification Types')
+
+Read('Tech Tree')
+
+Read('UI Colors')
+
+Read('Map')
+
+--System
+UpdateTreeScrollArea()
+InitializeTreeData()
+SetTotalMissionCount(8)
+UpdateFastList()
+```
+
 ## Синтаксис
 
 ### Основные типы данных
@@ -118,4 +141,3 @@ function - функции, которые можно присваивать пе
 Функции: можно передавать как аргументы.
 
 ### Описание доступных методов
-
