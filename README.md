@@ -78,6 +78,18 @@
 
 Вы также можете создать файл для нового языка, например, `German.txt`, и переименовать его, взяв за основу `English.txt`. После перевода всех значений на немецкий язык, вы сможете легко переключать язык в настройках игры. Важным аспектом является то, что в папке локализации карьеры должны находиться файлы с такими же именами, как и в основной папке, чтобы система могла правильно дополнить базовые файлы локализации. Если вы не планируете делать локализацию на разные языки в файлах локализации карьеры обязательно должен быть файл `English.txt` так как Англиский основной язык игры.
 
+Пример `Heaven's legacy`:
+```plaintext
+Career_Name = Heaven's legacy
+Career_Description = In the heart of a forested mountain area, far from the bustle of the city, the hero decides to start a new chapter of his life. Having inherited an airplane from his ancestors, he leaves the noisy city and goes to the clean air and picturesque landscapes. Now his task is not only to explore the magnificent natural spaces, but also to become a pilot who solves various tasks: delivering cargo, transporting passengers and helping local residents.
+Specification_Description_B = Cargo Transportation
+Specification_Description_P = Passengers Transportation
+Cessna_172_Description = The Cessna 172 is a lightweight, single-engine airplane ideal for transporting small cargo. With its robust design and easy handling, the Cessna 172 is used to transport small boxes and other lightweight items to remote locations.
+Robinson_R44_Description = The Robinson R44 is a compact light helicopter designed to carry up to one passenger. Thanks to its maneuverability and reliability, the R44 is well suited for flying to hard-to-reach places and performing small transport tasks.
+Mission_Name_1 = First flight
+Mission_Description_1 = Your first mission on an old but reliable airplane. You need to get used to the controls and get a feel for the machine. Just take a test flight to the nearest landing site. This easy task will help you get used to the controls and get a feel for the airplane in the sky.
+```
+
 Таким образом, структура локализации обеспечивает простоту добавления новых языков и поддерживает гибкость в изменении текста в игре. В дальнейшем мы можем получить значение по ключу в скрипте Lua, что позволяет динамически получать текст в зависимости от выбранного языка.
 
 ### Скриптинг
@@ -123,6 +135,96 @@ UpdateTreeScrollArea()
 InitializeTreeData()
 SetTotalMissionCount(8)
 UpdateFastList()
+```
+
+Aircraft Specification Types.lua
+```lua
+RegistryAircraftSpecificationType('B', 'Specification_Description_B', HexColor('#46c43b'))
+RegistryAircraftSpecificationType('P', 'Specification_Description_P', HexColor('#3badc4'))
+```
+
+Tech Tree.lua
+```lua
+arrowNotPassedColor = HexColor('#c2c2c2')
+arrowPassedColor = HexColor('#cdf4d5')
+techItemColor = HexColor('#52795e')
+
+SpawnTechTreeItem(0, 0, 'Cessna 172', 0, 
+    {SpecificationType('P', 1), SpecificationType('B', 1)}, 
+    'Cessna 172', 'Cessna_172_Description', 
+    Pos2(0, 0), techItemColor)
+
+SpawnArrow(Pos2(0, 0), 'Left', IsAircraftPurchased(0) and arrowPassedColor or arrowNotPassedColor)
+
+SpawnTechTreeItem(1, 0, 'Robinson-R44', 3000,
+    {SpecificationType('P', 2)}, 
+    'Robinson-R44', 'Robinson_R44_Description', 
+    Pos2(1, 0), techItemColor)
+```
+
+UI Colors.lua
+```lua
+colorMain = HexColor('#07493b')
+colorInfo = HexColor('#028e51')
+
+SetUiElementColor('Tech Tree Fone', HexColor('#213026'))
+
+SetUiElementColor('Play Button', colorMain)
+SetUiElementColor('Tech Tree Button', colorMain)
+SetUiElementColor('Exit Button', colorMain)
+SetUiElementColor('Tech Tree Back Button', colorMain)
+SetUiElementColor('Mission Back Button', colorMain)
+SetUiElementColor('Money Tab', colorInfo)
+SetUiElementColor('Info Tab', colorInfo)
+```
+
+Map.lua
+```lua
+SetMapSprite(GetSprite('map.jpg'), 1, HexColor('#4b96ba'))
+
+SetMissionItemCompletedColor(HexColor('#000000'))
+	
+SpawnMissionItem(1, 0, 'Mission 1', 100, 
+	{SpecificationType('P', 1)}, 
+	'Mission_Name_1', 'Mission_Description_1',
+	Pos2(-75, -275))
+	
+SpawnMissionItem(2, 1, 'Mission 2', 200, 
+	{}, 
+	'Mission_Name_2', 'Mission_Description_2',
+	Pos2(-175, -225))
+	
+SpawnMissionItem(3, 2, 'Mission 3', 300, 
+	{SpecificationType('P', 1), SpecificationType('B', 1)}, 
+	'Mission_Name_3', 'Mission_Description_3',
+	Pos2(25, -25))
+	
+SpawnMissionItem(4, 3, 'Mission 4', 400, 
+	{SpecificationType('B', 1)}, 
+	'Mission_Name_4', 'Mission_Description_4',
+	Pos2(-225, -25))
+	
+SpawnMissionItem(5, 4, 'Mission 5', 500, 
+	{SpecificationType('P', 1)}, 
+	'Mission_Name_5', 'Mission_Description_5',
+	Pos2(197, 342))
+	
+SpawnMissionItem(6, 5, 'Mission 6', 600, 
+	{}, 
+	'Mission_Name_6', 'Mission_Description_6',
+	Pos2(300, 335))
+	
+SpawnMissionItem(7, 6, 'Mission 7', 700, 
+	{SpecificationType('P', 2)}, 
+	'Mission_Name_7', 'Mission_Description_7',
+	Pos2(250, 280))
+	
+SpawnMissionItem(8, 7, 'Mission 8', 800, 
+	{SpecificationType('P', 2)}, 
+	'Mission_Name_8', 'Mission_Description_8',
+	Pos2(182, 205))
+
+SetDependencieRunLines()
 ```
 
 ## Синтаксис
