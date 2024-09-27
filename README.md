@@ -11,22 +11,24 @@
 
 ⚠️Внимательно создавайте базовые папки. Отсутствие или неправильное наименование базовых папок/файлов в структуре карьеры приводит к ошибкам игры. Ниже указана обязательная архитектура папок и файлов⚠️
 
-/Main Career Forlder
+```plaintext
+/Main Career Folder
 │
 ├── /Aircrafts
-├── / Maps
+├── /Maps
 ├── /Cache
 ├── /Demo
-    ├── NameKey.txt
-    ├── DescriptionKey.txt
-    └── icone.(jpg/png)
+│   ├── NameKey.txt
+│   ├── DescriptionKey.txt
+│   └── icone.(jpg/png)
 ├── /Localization
-    └── English.txt
+│   └── English.txt
 ├── /Skripts
-    ├── Main.txt
-    └── Exit.txt
+│   ├── Main.txt
+│   └── Exit.txt
 ├── /Textures
 └── /Audios
+```
 
 ### Папки:
 
