@@ -239,7 +239,13 @@ SetDependencieRunLines()
 - **Передача** значений
 - **Числа**: передаются как есть, например, SetTotalMissionCount(8).
 - **Строки**: передаются в виде строковых литералов, например, LoadMap('Base Lobby').
-- **Таблицы**: передаются в виде литералов, например, SpawnTechTreeItem(0, 0, 'Cessna 172', 0, {SpecificationType('P', 1)}, 'Cessna 172', 'Cessna_172_Description', Pos2(0, 0), techItemColor).
+- **Таблицы**: передаются в виде литералов, например, {SpecificationType('P', 1), SpecificationType('B', 2), SpecificationType('A', 5)},.
 - **Функции**: можно передавать как аргументы.
 
 ### Описание доступных методов
+
+**Print** - вывод строки в консоль.
+```lua
+Print(object message)
+Print('Hello FBS!')
+```
