@@ -249,3 +249,39 @@ SetDependencieRunLines()
 Print(object message)
 Print('Hello FBS!')
 ```
+
+**Pos2** - создание вектора из двух значений.
+```lua
+Pos2(float x, float y)
+Pos2(10.0, 20.0)
+```
+
+**HexColor** - конвертирует строку с шестнадцатеричным значением цвета в объект Color.
+```lua
+HexColor(string hex)
+HexColor('#FF5733')
+```
+
+**Color** - создает цвет из 4 значений (r, g, b, a).
+```lua
+Color(float r, float g, float b, float a)
+Color(1.0, 0.0, 0.0, 1.0)  -- Красный цвет
+```
+
+**SpecificationType** - создает объект AircraftSpecificationTypeAircraftItem с заданной меткой и эффективностью.
+```lua
+SpecificationType(string label, int efficiency)
+SpecificationType('Speed', 75)
+```
+
+**Read** - выполняет скрипт который лежит в папке `Skripts` по его названию.
+```lua
+Read(string scriptName)
+Read('mission_start')
+```
+
+**IsAircraftPurchased** - проверяет, был ли куплен самолет по его ID.
+```lua
+IsAircraftPurchased(int id)
+IsAircraftPurchased(1)
+```
