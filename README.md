@@ -285,3 +285,160 @@ Read('mission_start')
 IsAircraftPurchased(int id)
 IsAircraftPurchased(1)
 ```
+
+**AddMoney** - добавляет указанное количество денег игроку.
+```lua
+AddMoney(int amount)
+AddMoney(500)
+```
+
+**LoadMap** - загружает карту из папки `Maps` по ее названию как фон в меню.
+```lua
+LoadMap(string mapName)
+LoadMap('forest_map')
+```
+
+**PlayAudio** - воспроизводит аудиофайл по его имени.
+```lua
+PlayAudio(string audioName)
+PlayAudio('menu music')
+```
+
+**GetAudioTime** - возвращает текущее время воспроизведения музыки.
+```lua
+GetAudioTime()
+```
+
+**SetAudioTime** - устанавливает текущее время аудиотрека.
+```lua
+SetAudioTime(float time)
+SetAudioTime(25.0)
+```
+
+**GetAudioLength** - возвращает длину текущего аудиотрека.
+```lua
+GetAudioLength()
+```
+
+**SetMoneySymbol** - устанавливает символ валюты.
+```lua
+SetMoneySymbol(string symbol)
+SetMoneySymbol('$')
+```
+
+**RegistryAircraftSpecificationType** - регистрирует спецификацию техники.
+```lua
+RegistryAircraftSpecificationType(string name, string label, Color color)
+RegistryAircraftSpecificationType('Jet', 'Speed', Color(0.5, 0.5, 0.5, 1.0))
+```
+
+**SpawnTechTreeItem** - создает элемент в древе технологий.
+```lua
+SpawnTechTreeItem(int id, int requiredId, string mapBuildName, int reward,
+AircraftSpecificationTypeAircraftItem[] specs, string nameTag,
+string descriptionTag, Vector2 position, Color color)
+
+SpawnTechTreeItem(1, 0, 'base_tech', 100, {SpecificationType('Speed', 75)},
+'JetSpeed', 'Increases jet speed', Pos2(10.0, 20.0), Color(1.0, 0.0, 0.0, 1.0))
+```
+
+**SpawnArrow** - создает стрелку в древе технологий с указанной позицией, направлением и цветом. Доступные команды направления: `Left`, `Right`, `Up`, `Down`.
+```lua
+SpawnArrow(Vector2 position, string direction, Color color)
+SpawnArrow(Pos2(15.0, 25.0), 'Right', Color(0.0, 0.0, 1.0, 1.0))
+```
+
+**SetUiElementColor** - изменяет цвет элемента UI по тегу. 
+Доступные теги: `Play Button`, `Tech Tree Button`, `Exit Button`, `Tech Tree Fone`, `Tech Tree Back Button`, `Money Tab, Info Tab`, `Mission Back Button`.
+```lua
+SetUiElementColor(string tag, Color color)
+SetUiElementColor('missionPanel', Color(0.0, 1.0, 0.0, 1.0))
+```
+
+**SetTotalMissionCount** - устанавливает общее количество миссий.
+```lua
+SetTotalMissionCount(int count)
+SetTotalMissionCount(10)
+```
+
+**Save... / Load...** - Методы сохранения / загрузке данных по ключу.
+```lua
+--String
+SaveString(string key, string value)
+SaveString('player_name', 'John')
+
+LoadString(string key)
+LoadString('player_name')
+
+--Float
+SaveFloat(string key, float value)
+SaveFloat('volume', 0.75)
+
+LoadFloat(string key)
+LoadFloat('volume')
+
+--Int
+SaveInt(string key, int value)
+SaveInt('score', 100)
+
+LoadInt(string key)
+LoadInt('score')
+```
+
+**GetSprite** - загружает спрайт по имени из папки `Textures`.
+```lua
+GetSprite(string name)
+GetSprite('map')
+```
+
+**SetMapSprite** - устанавливает спрайт на карте с размером и цветом.
+```lua
+SetMapSprite(Sprite sprite, int size, Color color)
+SetMapSprite(GetSprite('map'), 64, Color(1.0, 1.0, 1.0, 1.0))
+```
+
+**SpawnHelpCoordinates** - создает координаты на карте для помощи.
+```lua
+SpawnHelpCoordinates(float step, int sideItemsCount, float size)
+SpawnHelpCoordinates(5.0, 10, 3.0)
+```
+
+**CompleteMission** - завершает миссию по ее ID.
+```lua
+CompleteMission(int id)
+CompleteMission(1)
+```
+
+**SpawnMissionItem** - создает элемент миссии с указанными параметрами.
+```lua
+SpawnMissionItem(int id, int requiredId, string mapBuildName,
+int reward, AircraftSpecificationTypeAircraftItem[] specs,
+string nameTag, string descriptionTag, Vector2 position)
+
+SpawnMissionItem(2, 1, 'new_mission', 200, {SpecificationType('Speed', 80)},
+'JetBoost', 'Boosts jet speed', Pos2(12.0, 24.0))
+```
+
+**SetMissionItemUnavailableColor** - устанавливает цвет для иконок недоступных миссий.
+```lua
+SetMissionItemUnavailableColor(Color color)
+SetMissionItemUnavailableColor(Color(0.5, 0.5, 0.5, 1.0))
+```
+
+**SetMissionItemCompletedColor** - устанавливает цвет для иконок завершенных миссий.
+```lua
+SetMissionItemCompletedColor(Color color)
+SetMissionItemCompletedColor(Color(0.0, 1.0, 0.0, 1.0))
+```
+
+**SetMissionItemUncompletedColor** - устанавливает цвет для иконок незавершенных миссий.
+```lua
+SetMissionItemUncompletedColor(Color color)
+SetMissionItemUncompletedColor(Color(1.0, 0.0, 0.0, 1.0))
+```
+
+**SetRunLinesColor** - устанавливает цвет бегущих линий зависимостей миссий.
+```lua
+SetRunLinesColor(Color color)
+SetRunLinesColor(Color(1.0, 0.0, 0.0, 1.0))
+```
