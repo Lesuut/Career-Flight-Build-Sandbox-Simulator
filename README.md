@@ -24,7 +24,7 @@ The career project is organized into several folders, each containing resources 
 ├── /Localization
 │   └── English.txt
 ├── /Skripts
-    ├── SaveKey.txt
+│   ├── SaveKey.txt
 │   ├── Main.lua
 │   └── Exit.lua
 ├── /Textures
